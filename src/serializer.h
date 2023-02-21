@@ -10,6 +10,11 @@ struct Serializer {
   virtual T deserialize(T &t, Instream &in) const {}
 };
 
+#define S_WRITE(_t, _o) \
+Serializer<decltype(_t)>().serialize(_t, _o)
+#define S_READ(_t, _i) \
+Serializer<decltype(_t)>().deserialize(_t, _i)
+
 // defines a serializer for primitive type _t
 #define _PRIMITIVE_SERIALIZER(_t)                        \
 template <>                                              \
